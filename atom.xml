@@ -6,7 +6,7 @@
   <link href="https://zxxiao.github.io/atom.xml" rel="self"/>
   
   <link href="https://zxxiao.github.io/"/>
-  <updated>2022-03-25T03:44:12.918Z</updated>
+  <updated>2022-03-28T14:25:01.856Z</updated>
   <id>https://zxxiao.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【数据结构与算法】排序算法（一）</title>
+    <link href="https://zxxiao.github.io/2022/03/28/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E3%80%91%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/"/>
+    <id>https://zxxiao.github.io/2022/03/28/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E3%80%91%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</id>
+    <published>2022-03-28T13:33:00.000Z</published>
+    <updated>2022-03-28T14:25:01.856Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><p><strong>思想：</strong></p><ul><li>比较所有相邻元素，如果第一个元素的值大于第二个，交换它们</li><li>一轮下来可以保证最后一个元素是最大的</li><li>执行n-1轮即可以完成排序</li></ul><p><strong>js实现冒泡排序：</strong></p><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Array.prototype.bubbleSort = function()&#123;</span><br><span class="line">    <span class="keyword">for</span>(let i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.length - <span class="number">1</span>; i ++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(let j = <span class="number">0</span>; j &lt; <span class="keyword">this</span>.length - <span class="number">1</span> - i; j ++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="keyword">this</span>[j] &gt; <span class="keyword">this</span>[j + <span class="number">1</span>])&#123;</span><br><span class="line">                <span class="keyword">const</span> temp = <span class="keyword">this</span>[j];</span><br><span class="line">                <span class="keyword">this</span>[j] = <span class="keyword">this</span>[j + <span class="number">1</span>];</span><br><span class="line">                <span class="keyword">this</span>[j + <span class="number">1</span>] = temp; </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> arr = [<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>];</span><br><span class="line">arr.bubbleSort(); <span class="comment">//输出为1,2,3,4,5</span></span><br></pre></td></tr></table></figure><p><em><strong>时间复杂度：O(n ^ 2)</strong></em></p><hr><h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><p><strong>思想：</strong></p><ul><li>找到数组中的最小值，选中它并将其放到第一位</li><li>找到数组中的第二小的值，选中它并将其放到第二位</li><li>以此类推，执行n-1轮</li></ul><p><strong>js实现选择排序：</strong></p><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Array.prototype.selectSort = function()&#123;</span><br><span class="line">    <span class="keyword">for</span>(let i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.length; i ++)&#123;</span><br><span class="line">        let minIndex = i; <span class="comment">//最小值的下标 初始化为0</span></span><br><span class="line">        <span class="keyword">for</span>(let j = i; j &lt; <span class="keyword">this</span>.length; j ++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="keyword">this</span>[j] &lt; <span class="keyword">this</span>[minIndex])&#123;</span><br><span class="line">                minIndex = j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">const</span> temp = <span class="keyword">this</span>[i];</span><br><span class="line">        <span class="keyword">this</span>[i] = <span class="keyword">this</span>[minIndex];</span><br><span class="line">        <span class="keyword">this</span>[minIndex] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> arr = [<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>];</span><br><span class="line">arr.selectSort();</span><br></pre></td></tr></table></figure><p><em><strong>时间复杂度：O(n ^ 2)</strong></em></p><hr><h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><p><strong>思想：</strong></p><ul><li>从第二个数开始往前比</li><li>比它大就就往后移动</li><li>以此类推，直到最后一个数</li></ul><p><strong>js实现插入排序：</strong></p><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Array.prototype.inseretionSort = function()&#123;</span><br><span class="line">    <span class="keyword">for</span>(let i = <span class="number">1</span>; i &lt; <span class="keyword">this</span>.length; i ++)&#123;</span><br><span class="line">        <span class="keyword">const</span> temp = <span class="keyword">this</span>[i]; <span class="comment">//拿到第i个数 往前比</span></span><br><span class="line">        let j = i; </span><br><span class="line">        <span class="keyword">while</span>(j &gt; <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="keyword">this</span>[j-<span class="number">1</span>] &gt; temp)&#123; <span class="comment">//如果j-1的值比j的值大，把j-1往后移 </span></span><br><span class="line">                <span class="keyword">this</span>[j] = <span class="keyword">this</span>[j-<span class="number">1</span>]</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123; </span><br><span class="line">                <span class="keyword">break</span>; <span class="comment">//如果j-1的值比j的值小，就没有必要比了</span></span><br><span class="line">            &#125;</span><br><span class="line">            -- j;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>[j] = temp; <span class="comment">//j就是当前元素要插入的位置</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> arr = [<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>];</span><br><span class="line">arr.inseretionSort();</span><br></pre></td></tr></table></figure><p><em><strong>时间复杂度：O(n ^ 2)</strong></em></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;冒泡排序&quot;&gt;&lt;a href=&quot;#冒泡排序&quot; class=&quot;headerlink&quot; title=&quot;冒泡排序&quot;&gt;&lt;/a&gt;冒泡排序&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;思想：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;比较所有相邻元素，如果第一个元素的值大于第二个，交换它们</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>【数据结构与算法】最小堆的实现</title>
@@ -72,26 +94,6 @@
     <category term="读书" scheme="https://zxxiao.github.io/tags/%E8%AF%BB%E4%B9%A6/"/>
     
     <category term="随笔" scheme="https://zxxiao.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="https://zxxiao.github.io/2022/03/24/hello-world/"/>
-    <id>https://zxxiao.github.io/2022/03/24/hello-world/</id>
-    <published>2022-03-24T03:23:33.029Z</published>
-    <updated>2022-03-24T03:17:18.563Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for</summary>
-      
-    
-    
-    
     
   </entry>
   
